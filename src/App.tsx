@@ -1,23 +1,37 @@
 // src/App.jsx
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
+import AboutMe from "./Aboutme";
+import Projects from "./Projects";
+import Experience from "./Experience";
 import "./App.css";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="app">
-      <video className="background-video" autoPlay loop muted playsInline>
-        <source src="/videos/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
       <header className="App-header">
-        <Navbar />
+        <Navbar onPageChange={handlePageChange} />
       </header>
       <main>
-        <section id="about-me">
-          <h1>Hi there, I'm Mohammed Fatheen Ahmed</h1>
-          <p>CS and Statistics @ UIUC</p>
-        </section>
+        {currentPage === "home" && (
+          <section id="about-me">
+            <h1>Hi there, I'm Mohammed Fatheen Ahmed</h1>
+            <p>
+              Welcome to my website! I am a Freshman in CS and Statistics 🖥📈@
+              UIUC📚.
+            </p>
+          </section>
+        )}
+        {currentPage === "about" && <AboutMe />}
+        {currentPage === "projects" && <Projects />}
+        {currentPage === "experience" && <Experience />}
+        {/* Add other sections as needed */}
       </main>
     </div>
   );
