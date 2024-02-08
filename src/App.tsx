@@ -9,7 +9,7 @@ import "./App.css";
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: string) => {
     setCurrentPage(page);
   };
 
